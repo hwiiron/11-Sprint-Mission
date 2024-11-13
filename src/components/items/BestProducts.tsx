@@ -7,8 +7,21 @@ import SkeletonProducts from "./SkeletonProducts";
 import Product from "./Product";
 import { Link } from "react-router-dom";
 
+interface ProductProps {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  favoriteCount: number;
+  images: string;
+  tags: string[];
+  ownerId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const BestProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductProps[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const [pageSize, setPageSize] = useState(4);

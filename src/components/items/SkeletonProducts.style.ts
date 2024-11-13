@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyledSkeletonProducts = styled.ul`
+interface TypeProp {
+  type: string;
+}
+
+const StyledSkeletonProducts = styled.ul<TypeProp>`
   display: flex;
   flex-wrap: wrap;
   flex: 1;

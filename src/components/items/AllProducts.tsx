@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../utils/api";
 import { StyledProducts, StyledTitle } from "./BestProducts.style";
 import { StyledHead, StyledSection } from "./AllProducts.style";
@@ -10,11 +10,30 @@ import ProductControl from "./ProductControl";
 import Paging from "./Paging";
 import { Link } from "react-router-dom";
 
+interface DataProps {
+  page: number;
+  orderBy: string;
+  pageSize: number;
+}
+
+interface ProductProps {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  favoriteCount: number;
+  images: string;
+  tags: string[];
+  ownerId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 const AllProducts = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductProps[]>([]);
   const [orderBy, setOrderBy] = useState("recent");
   const [search, setSearch] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState<ProductProps[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +60,7 @@ const AllProducts = () => {
     return () => window.removeEventListener("resize", updatePageSize);
   }, []); // pageSize가 변경될 때마다 itemsLoad 호출
 
-  const productDataLoad = async (options) => {
+  const productDataLoad = async (options: DataProps) => {
     try {
       setIsLoading(true);
       const { list, totalCount } = await getAllProducts(options);
@@ -69,11 +88,11 @@ const AllProducts = () => {
   };
 
   // 검색
-  const SearchInputChange = (value) => {
+  const SearchInputChange = (value: string) => {
     setSearch(value);
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = (e: SubmitEvent) => {
     e.preventDefault();
 
     const filteredData = products.filter((product) =>
@@ -84,7 +103,7 @@ const AllProducts = () => {
   };
 
   // 페이징
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 

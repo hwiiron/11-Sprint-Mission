@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const StyledButton = styled.div`
+interface TypeProps {
+  type?: string;
+  disabled?: boolean;
+}
+
+const StyledButton = styled.div<TypeProps>`
   border-radius: 8px;
   background: var(--blue);
   height: 42px;

@@ -1,3 +1,4 @@
+import React from "react";
 import StyledControl from "./ProductControl.style";
 import SearchInput from "./SearchInput";
 import Button from "../../layouts/Button";

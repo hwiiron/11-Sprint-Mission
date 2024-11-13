@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface TypeProps {
+  type: string;
+}
+
 const StyledTitle = styled.h2`
   font-size: 20px;
   font-weight: 700;
@@ -7,7 +11,7 @@ const StyledTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
-const StyledProducts = styled.ul`
+const StyledProducts = styled.ul<TypeProps>`
   display: flex;
   flex-wrap: wrap;
   gap: 23px;

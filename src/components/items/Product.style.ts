@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyleProduct = styled.li`
+interface TypeProps {
+  type: string;
+}
+
+const StyleProduct = styled.li<TypeProps>`
   width: ${(props) => {
     switch (props.type) {
       case "BEST":

@@ -1,3 +1,4 @@
+import React from "react";
 import Info from "./ProductInfo.style";
 
 const ProductInfo = ({ product }) => {

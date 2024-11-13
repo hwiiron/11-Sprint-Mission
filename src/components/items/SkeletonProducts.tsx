@@ -1,3 +1,5 @@
+import React from "react";
+
 import StyledSkeletonProducts from "./SkeletonProducts.style";
 
 const typeList = {
@@ -12,9 +14,10 @@ const typeList = {
 const SkeletonProducts = ({ type = "BEST" }) => {
   const { number } = typeList[type];
 
-  const skeleton = [];
+  // 어떤 타입으로 설정해야 할지 모르겠음..
+  const skeleton: any = [];
 
-  for (let i = 1; i <= `${number}`; i++) {
+  for (let i = 1; i <= number; i++) {
     skeleton.push(
       <li key={i}>
         <div className="skeleton-img"></div>

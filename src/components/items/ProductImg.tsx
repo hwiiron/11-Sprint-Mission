@@ -1,3 +1,4 @@
+import React from "react";
 import StyledImg from "./ProductImg.style";
 import defaultImg from "../../assets/codeit.svg";
 

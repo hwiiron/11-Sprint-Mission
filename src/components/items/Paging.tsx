@@ -1,3 +1,4 @@
+import React from "react";
 import StyledPaging from "./Paging.style";
 
 const Paging = ({ handlePageChange, totalCount, currentPage }) => {

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const StyledImg = styled.figure`
+interface TypeProps {
+  type: string;
+}
+
+const StyledImg = styled.figure<TypeProps>`
   border: 1px solid #e0e0e0;
   border-radius: 16px;
   width: 100%;

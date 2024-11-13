@@ -1,7 +1,9 @@
+import React from "react";
+import { ChangeEvent } from "react";
 import StyledInput from "./SearchInput.style";
 
 const SearchInput = ({ value, SearchInputChange, onSubmit }) => {
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     SearchInputChange(e.target.value);
   };
 
