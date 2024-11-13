@@ -1,10 +1,12 @@
-import { SubHeader } from "../layouts/Header";
+import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
 
 const Boards = () => {
   return (
     <>
-      <SubHeader />
-      <div>자유 게시판</div>
+      <Header />
+      <div>자유게시판</div>
+      <Footer />
     </>
   );
 };

@@ -1,11 +1,16 @@
-import { SubHeader } from "../layouts/Header";
+import Header from "../layouts/Header";
+import StyledInner from "../layouts/StyledInner.style";
 import AddProduct from "../components/addItem/AddProduct";
+import Footer from "../layouts/Footer";
 
 const AddItem = () => {
   return (
     <>
-      <SubHeader />
-      <AddProduct />
+      <Header />
+      <StyledInner>
+        <AddProduct />
+      </StyledInner>
+      <Footer />
     </>
   );
 };

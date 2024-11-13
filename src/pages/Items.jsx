@@ -1,13 +1,19 @@
-import BestProduct from "../components/items/BestProduct";
-import AllProduct from "../components/items/AllProduct";
-import { SubHeader } from "../layouts/Header";
+import StyledInner from "../layouts/StyledInner.style";
+
+import Header from "../layouts/Header";
+import AllProducts from "../components/items/AllProducts";
+import BestProducts from "../components/items/BestProducts";
+import Footer from "../layouts/Footer";
 
 const Items = () => {
   return (
     <>
-      <SubHeader />
-      <BestProduct />
-      <AllProduct />
+      <Header />
+      <StyledInner>
+        <BestProducts />
+        <AllProducts />
+      </StyledInner>
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import LikeIcon from "../../assets/likes_icon.svg";
+import LikeIcon from "../../assets/item/likes_icon.svg";
 import Like from "./Likes.style";
 
 const Likes = ({ item }) => {

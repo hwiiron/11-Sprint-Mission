@@ -1,6 +1,6 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { SubHeader } from "../layouts/Header";
+import Header from "../layouts/Header";
+import StyledInner from "../layouts/StyledInner.style";
 import Product from "../components/Item/Product";
 import ContactUs from "../components/Item/ContactUs";
 import Comments from "../components/Item/Comments";
@@ -10,10 +10,12 @@ const Item = () => {
 
   return (
     <>
-      <SubHeader />
-      <Product id={id} />
-      <ContactUs />
-      <Comments id={id} />
+      <Header />
+      <StyledInner>
+        <Product id={id} />
+        <ContactUs />
+        <Comments id={id} />
+      </StyledInner>
     </>
   );
 };

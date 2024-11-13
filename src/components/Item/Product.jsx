@@ -1,7 +1,7 @@
 import { Inner, ProductContainer } from "./Product.style";
 
 import { useState, useEffect } from "react";
-import { getItem } from "../../api";
+import { getProduct } from "../../utils/api";
 import ProductImg from "./ProductImg";
 import ProductDetails from "./ProductDetails";
 
@@ -10,7 +10,7 @@ const Product = ({ id }) => {
 
   useEffect(() => {
     const productDataLoad = async () => {
-      const data = await getItem(id);
+      const data = await getProduct(id);
       setItem(data);
     };
     productDataLoad();

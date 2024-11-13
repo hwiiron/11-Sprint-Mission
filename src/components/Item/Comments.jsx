@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Inner, CommentList } from "./Comments.style";
-import { getComment } from "../../api";
+import { getComment } from "../../utils/api";
 import EditComment from "./EditComment";
 import Comment from "./Comment";
 import StyledReturnToList from "./ReturnToList.style";
@@ -62,6 +62,7 @@ const Comments = ({ id }) => {
             if (comment.id === editingCommentId) {
               return (
                 <EditComment
+                  key={comment.id}
                   comment={comment}
                   EditTextarea={EditTextarea}
                   onTextareaChange={onTextareaChange}
@@ -72,6 +73,7 @@ const Comments = ({ id }) => {
             }
             return (
               <Comment
+                key={comment.id}
                 comment={comment}
                 toggledCommentId={toggledCommentId}
                 handleToggleClick={handleToggleClick}

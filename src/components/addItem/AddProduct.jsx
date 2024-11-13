@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
-import "./AddProduct.css";
+import { useState, useEffect } from "react";
+import StyledAddProduct from "./AddProduct.style";
+import AddProductHead from "./AddProductHead";
+import Label from "./Label";
 import FileInput from "./FileInput";
-import InputField from "./FormInput";
+import InputField from "./InputField";
+import Textarea from "./Textarea";
+import TagList from "./TagList";
 
 const AddProduct = () => {
   const [values, setValues] = useState({
@@ -12,10 +16,18 @@ const AddProduct = () => {
     tags: [],
   });
 
-  const [tags, setTags] = useState([]); // values로 넘겨줄 state
   const [tagInputValue, setTagInputValue] = useState(""); // tag input의 value를 저장할 state
 
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // 터미널 오류가 계속 보여서 일단 setIsSubmitDisabled 제거
+  const isSubmitDisabled =
+    values.name.trim() !== "" &&
+    values.description.trim() !== "" &&
+    values.price.trim() !== "" &&
+    values.tags.length > 0;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    handleFileChange(name, value);
+  };
 
   const handleFileChange = (name, value) => {
     setValues((prevValues) => ({
@@ -24,9 +36,12 @@ const AddProduct = () => {
     }));
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    handleFileChange(name, value);
+  // 상품 가격 3자리마다 콤마 추가, 모바일에서 text 입력되는 경우도 해결
+  const onInput = (e) => {
+    const onlyDigits = e.target.value.replace(/[^0-9]/g, "");
+    const formattedValue = onlyDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    e.target.value = formattedValue;
   };
 
   // tag input에 value 값 저장
@@ -42,88 +57,57 @@ const AddProduct = () => {
         return;
       }
 
-      setTags((prevTags) => [...prevTags, tagInputValue]);
+      setValues((prevValues) => ({
+        ...prevValues,
+        tags: [...prevValues.tags, tagInputValue],
+      }));
       setTagInputValue("");
     }
   };
 
-  // tags 배열의 값을 values에 추가
-  useEffect(() => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      tags: tags,
-    }));
-  }, [tags]);
-
   // tag 삭제
   const handleDeleteClick = (tagIdx) => {
-    setTags(tags.filter((tag, idx) => idx !== tagIdx));
-  };
-
-  // 조건 성립 시 등록 버튼 활성화
-  useEffect(() => {
-    if (
-      values.name.trim() !== "" &&
-      values.description.trim() !== "" &&
-      values.price.trim() !== "" &&
-      values.tags.length > 0
-    ) {
-      setIsSubmitDisabled(false);
-    } else {
-      setIsSubmitDisabled(true);
-    }
-  }, [values]);
-
-  // 상품 가격 3자리마다 콤마 추가, 모바일에서 text 입력되는 경우도 해결
-  const onInput = (e) => {
-    const onlyDigits = e.target.value.replace(/[^0-9]/g, "");
-    const formattedValue = onlyDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    e.target.value = formattedValue;
+    setValues((prevValues) => ({
+      ...prevValues,
+      tags: prevValues.tags.filter((_, idx) => idx !== tagIdx), // tag 삭제
+    }));
   };
 
   return (
-    <div className="addItem__inner">
-      <div className="addItem__head">
-        <h2>상품 등록하기</h2>
+    <StyledAddProduct>
+      <AddProductHead disabled={!isSubmitDisabled} />
 
-        <button className="addBtn" disabled={isSubmitDisabled}>
-          등록
-        </button>
-      </div>
-      <div>
-        <label>상품 이미지</label>
-        <FileInput
-          name="imgFile"
-          value={values.imgFile}
-          onChange={handleFileChange}
-        />
-      </div>
+      <Label htmlFor="productImg">상품 이미지</Label>
+      <FileInput
+        name="imgFile"
+        value={values.imgFile}
+        onChange={handleFileChange}
+      />
 
+      <Label htmlFor="name">상품명</Label>
       <InputField
-        labelName="상품명"
         name="name"
-        htmlForId="productName"
+        id="name"
         type="text"
+        htmlForId="productName"
         value={values.name}
         placeholder="상품명을 입력해주세요"
         onChange={handleChange}
       />
 
-      <div>
-        <label htmlFor="description">상품 소개</label>
-        <textarea
-          name="description"
-          id="description"
-          value={values.description}
-          placeholder="상품 소개를 입력해주세요"
-          onChange={handleChange}
-        ></textarea>
-      </div>
+      <Label htmlFor="description">상품 소개</Label>
+      <Textarea
+        name="description"
+        id="description"
+        value={values.description}
+        placeholder="상품 소개를 입력해주세요"
+        onChange={handleChange}
+      />
 
+      <Label htmlFor="price">판매가격</Label>
       <InputField
-        labelName="판매가격"
         name="price"
+        id="price"
         htmlForId="price"
         type="text"
         value={values.price}
@@ -132,29 +116,23 @@ const AddProduct = () => {
         onInput={onInput}
       />
 
+      <Label htmlFor="tags">태그</Label>
       <InputField
-        labelName="태그"
-        htmlForId="tag"
+        name="tags"
+        id="tags"
         type="text"
         value={tagInputValue}
         placeholder="태그를 입력해주세요"
         onKeyDown={onKeyDown}
         onChange={onChange}
-      ></InputField>
+      />
 
-      {tags.length !== 0 && (
-        <ul className="tagList">
-          {tags.map((tag, idx) => {
-            return (
-              <li key={idx}>
-                #{tag}
-                <button onClick={() => handleDeleteClick(idx)}></button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+      <TagList
+        tagsLength={values.tags.length}
+        tags={values.tags}
+        onClick={handleDeleteClick}
+      />
+    </StyledAddProduct>
   );
 };
 

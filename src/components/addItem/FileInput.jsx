@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./FileInput.css";
+import { StyledFileInput, StyledFileArea } from "./FileInput.style";
 
 const FileInput = ({ name, value, onChange }) => {
   const [preview, setPreview] = useState();
@@ -41,8 +41,8 @@ const FileInput = ({ name, value, onChange }) => {
   }, [value]); // value 값이 변경될 때마다 미리보기 이미지 변경
 
   return (
-    <div className="FileInput">
-      <div>
+    <StyledFileInput>
+      <StyledFileArea>
         <label htmlFor="productImg">
           <input
             id="productImg"
@@ -55,14 +55,15 @@ const FileInput = ({ name, value, onChange }) => {
         </label>
 
         {value && (
-          <div className="preview">
+          <div>
             <img src={preview} alt="이미지 미리보기" />
             <button onClick={handleClearClick}></button>
           </div>
         )}
-      </div>
+      </StyledFileArea>
+
       {imageUploadStatus && <p>*이미지 등록은 최대 1개까지 가능합니다.</p>}
-    </div>
+    </StyledFileInput>
   );
 };
 
