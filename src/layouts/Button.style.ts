@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-interface TypeProps {
+type TypeProps = {
   type?: string;
   disabled?: boolean;
-}
+};
 
 const StyledButton = styled.div<TypeProps>`
   border-radius: 8px;

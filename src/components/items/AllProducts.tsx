@@ -10,13 +10,13 @@ import ProductControl from "./ProductControl";
 import Paging from "./Paging";
 import { Link } from "react-router-dom";
 
-interface DataProps {
+type DataProps = {
   page: number;
   orderBy: string;
   pageSize: number;
-}
+};
 
-interface ProductProps {
+type ProductProps = {
   id: number;
   name: string;
   description: string;
@@ -27,7 +27,7 @@ interface ProductProps {
   ownerId: number;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 const AllProducts = () => {
   const [products, setProducts] = useState<ProductProps[]>([]);
