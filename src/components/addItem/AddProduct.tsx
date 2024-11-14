@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { ChangeEvent } from "react";
+import { useState } from "react";
 import StyledAddProduct from "./AddProduct.style";
 import AddProductHead from "./AddProductHead";
 import Label from "./Label";
@@ -7,8 +8,17 @@ import InputField from "./InputField";
 import Textarea from "./Textarea";
 import TagList from "./TagList";
 
+type ValuesProp = {
+  imgFile: null | string;
+  name: string;
+  description: string;
+  price: string;
+  tags: string[];
+  htmlForId: string;
+};
+
 const AddProduct = () => {
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<ValuesProp>({
     imgFile: null,
     name: "",
     description: "",
@@ -24,12 +34,12 @@ const AddProduct = () => {
     values.price.trim() !== "" &&
     values.tags.length > 0;
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target;
     handleFileChange(name, value);
   };
 
-  const handleFileChange = (name, value) => {
+  const handleFileChange = (name: string, value: string) => {
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -37,7 +47,7 @@ const AddProduct = () => {
   };
 
   // 상품 가격 3자리마다 콤마 추가, 모바일에서 text 입력되는 경우도 해결
-  const onInput = (e) => {
+  const onInput = (e: InputEvent) => {
     const onlyDigits = e.target.value.replace(/[^0-9]/g, "");
     const formattedValue = onlyDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -45,13 +55,13 @@ const AddProduct = () => {
   };
 
   // tag input에 value 값 저장
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent) => {
     setTagInputValue(e.target.value);
   };
 
   // 빈 값으로 엔터키 입력 시, return
   // tag input의 value 값을 tags 배열에 추가
-  const onKeyDown = (e) => {
+  const onKeyDown = (e: KeyboardEvent) => {
     if (e.keyCode === 13) {
       if (e.target.value.trim() === "") {
         return;
@@ -66,7 +76,7 @@ const AddProduct = () => {
   };
 
   // tag 삭제
-  const handleDeleteClick = (tagIdx) => {
+  const handleDeleteClick = (tagIdx: number) => {
     setValues((prevValues) => ({
       ...prevValues,
       tags: prevValues.tags.filter((_, idx) => idx !== tagIdx), // tag 삭제

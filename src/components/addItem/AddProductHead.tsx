@@ -1,3 +1,4 @@
+import React from "react";
 import StyledAddProductHead from "./AddProductHead.style";
 
 const AddProductHead = ({ disabled }) => {

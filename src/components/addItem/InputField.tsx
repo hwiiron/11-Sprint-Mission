@@ -1,3 +1,4 @@
+import React from "react";
 import StyledInputField from "./InputField.style";
 
 const InputField = ({

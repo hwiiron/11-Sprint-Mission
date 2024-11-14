@@ -1,3 +1,4 @@
+import React from "react";
 import StyledTagList from "./TagList.style";
 
 const TagList = ({ tagsLength, tags, onClick }) => {
@@ -5,7 +6,7 @@ const TagList = ({ tagsLength, tags, onClick }) => {
     <>
       {tagsLength !== 0 && (
         <StyledTagList>
-          {tags.map((tag, idx) => {
+          {tags.map((tag: string, idx: number) => {
             return (
               <li key={idx}>
                 #{tag}

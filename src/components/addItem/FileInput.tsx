@@ -1,13 +1,15 @@
+import React, { ChangeEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+
 import { StyledFileInput, StyledFileArea } from "./FileInput.style";
 
 const FileInput = ({ name, value, onChange }) => {
   const [preview, setPreview] = useState();
   const [imageUploadStatus, setImageUploadStatus] = useState(false);
 
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent) => {
     const nextValue = e.target.files[0];
     onChange(name, nextValue);
 

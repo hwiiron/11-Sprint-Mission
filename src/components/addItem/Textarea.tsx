@@ -1,3 +1,4 @@
+import React from "react";
 import StyledTextarea from "./Textarea.style";
 
 const Textarea = ({ name, id, value, placeholder, onChange }) => {

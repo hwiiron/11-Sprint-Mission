@@ -1,3 +1,4 @@
+import React from "react";
 import StyledLabel from "./Label.style";
 
 const Label = ({ children, htmlFor }) => {
