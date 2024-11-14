@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface TypeProp {
+type TypeProp = {
   type: string;
-}
+};
 
 const StyledSkeletonProducts = styled.ul<TypeProp>`
   display: flex;

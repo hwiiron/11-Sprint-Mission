@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface TypeProps {
+type TypeProps = {
   type: string;
-}
+};
 
 const StyledImg = styled.figure<TypeProps>`
   border: 1px solid #e0e0e0;

@@ -7,7 +7,7 @@ import SkeletonProducts from "./SkeletonProducts";
 import Product from "./Product";
 import { Link } from "react-router-dom";
 
-interface ProductProps {
+type ProductProps = {
   id: number;
   name: string;
   description: string;
@@ -18,7 +18,7 @@ interface ProductProps {
   ownerId: number;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 const BestProducts = () => {
   const [products, setProducts] = useState<ProductProps[]>([]);

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface TypeProps {
+type TypeProps = {
   type: string;
-}
+};
 
 const StyleProduct = styled.li<TypeProps>`
   width: ${(props) => {

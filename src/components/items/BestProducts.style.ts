@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface TypeProps {
+type TypeProps = {
   type: string;
-}
+};
 
 const StyledTitle = styled.h2`
   font-size: 20px;
