@@ -14,8 +14,8 @@ const typeList = {
 const SkeletonProducts = ({ type = "BEST" }) => {
   const { number } = typeList[type];
 
-  // 어떤 타입으로 설정해야 할지 모르겠음..
-  const skeleton: any = [];
+  // const skeleton: any = [];
+  const skeleton = [] as JSX.Element[];
 
   for (let i = 1; i <= number; i++) {
     skeleton.push(
