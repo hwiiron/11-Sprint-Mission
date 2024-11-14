@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const StyledHeader = styled.header`
+  border-bottom: 1px solid #dfdfdf;
+  width: 100%;
+  height: 70px;
+`;
+
 const StyledHeaderInner = styled.div`
   width: 1200px;
   height: 100%;
@@ -17,4 +23,4 @@ const StyledHeaderInner = styled.div`
   }
 `;
 
-export default StyledHeaderInner;
+export { StyledHeader, StyledHeaderInner };

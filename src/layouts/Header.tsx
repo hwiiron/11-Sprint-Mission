@@ -1,5 +1,5 @@
-import StyledHeader from "./Header.style";
-import StyledHeaderInner from "./HeaderInner.style";
+import React from "react";
+import { StyledHeader, StyledHeaderInner } from "./Header.style";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
 import ProfileImg from "./ProfileImg";
