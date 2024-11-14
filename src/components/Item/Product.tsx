@@ -1,3 +1,4 @@
+import React from "react";
 import { Inner, ProductContainer } from "./Product.style";
 
 import { useState, useEffect } from "react";

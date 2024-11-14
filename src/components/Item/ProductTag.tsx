@@ -1,3 +1,4 @@
+import React from "react";
 import Tag from "./ProductTag.style";
 
 const ProductTag = ({ item }) => {

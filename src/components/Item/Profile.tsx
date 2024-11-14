@@ -1,3 +1,4 @@
+import React from "react";
 import profileImg from "../../assets/profileImg.svg";
 
 import { ProfileWrapper, Img, Info } from "./Profile.style";

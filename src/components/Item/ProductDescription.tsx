@@ -1,3 +1,4 @@
+import React from "react";
 import Description from "./ProductDescription.style";
 
 const ProductDescription = ({ item }) => {

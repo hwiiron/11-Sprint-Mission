@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Inner, Label, Textarea, Button } from "./ContactUs.style";
 

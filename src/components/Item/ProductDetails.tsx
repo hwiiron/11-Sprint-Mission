@@ -1,3 +1,4 @@
+import React from "react";
 import { Details, UserStats } from "./ProductDetails.style";
 
 import ProductHead from "./ProductHead";

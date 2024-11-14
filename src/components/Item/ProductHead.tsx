@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "./ProductHead.style";
 
 const ProductHead = ({ item }) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import LikeIcon from "../../assets/item/likes_icon.svg";
 import Like from "./Likes.style";
 
