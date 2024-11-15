@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { StyledFileInput, StyledFileArea } from "./FileInput.style";
 
 const FileInput = ({ name, value, onChange }) => {
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState<string>();
   const [imageUploadStatus, setImageUploadStatus] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: ChangeEvent) => {
-    const nextValue = e.target.files[0];
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const nextValue = e.target.files ? e.target.files[0] : null;
     onChange(name, nextValue);
 
     // 이미지 파일이 등록되어 있는데 또 파일 선택 클릭 시
@@ -34,10 +34,8 @@ const FileInput = ({ name, value, onChange }) => {
     const nextPreview = URL.createObjectURL(value); // 임시로 이미지 url 생성
     setPreview(nextPreview);
 
-    console.log(URL.createObjectURL(value));
-
     return () => {
-      setPreview();
+      setPreview(undefined);
       URL.revokeObjectURL(nextPreview);
     };
   }, [value]); // value 값이 변경될 때마다 미리보기 이미지 변경

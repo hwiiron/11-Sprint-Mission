@@ -8,17 +8,16 @@ import InputField from "./InputField";
 import Textarea from "./Textarea";
 import TagList from "./TagList";
 
-type ValuesProp = {
-  imgFile: null | string;
+type ValuesProps = {
+  imgFile: null;
   name: string;
   description: string;
   price: string;
   tags: string[];
-  htmlForId: string;
 };
 
 const AddProduct = () => {
-  const [values, setValues] = useState<ValuesProp>({
+  const [values, setValues] = useState<ValuesProps>({
     imgFile: null,
     name: "",
     description: "",
@@ -34,7 +33,7 @@ const AddProduct = () => {
     values.price.trim() !== "" &&
     values.tags.length > 0;
 
-  const handleChange = (e: ChangeEvent) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     handleFileChange(name, value);
   };
@@ -47,23 +46,26 @@ const AddProduct = () => {
   };
 
   // 상품 가격 3자리마다 콤마 추가, 모바일에서 text 입력되는 경우도 해결
-  const onInput = (e: InputEvent) => {
-    const onlyDigits = e.target.value.replace(/[^0-9]/g, "");
+  const onInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const onlyDigits = target.value.replace(/[^0-9]/g, "");
     const formattedValue = onlyDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-    e.target.value = formattedValue;
+    target.value = formattedValue;
   };
 
   // tag input에 value 값 저장
   const onChange = (e: ChangeEvent) => {
-    setTagInputValue(e.target.value);
+    const target = e.target as HTMLInputElement;
+    setTagInputValue(target.value);
   };
 
   // 빈 값으로 엔터키 입력 시, return
   // tag input의 value 값을 tags 배열에 추가
-  const onKeyDown = (e: KeyboardEvent) => {
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
     if (e.keyCode === 13) {
-      if (e.target.value.trim() === "") {
+      if (target.value.trim() === "") {
         return;
       }
 
@@ -99,7 +101,6 @@ const AddProduct = () => {
         name="name"
         id="name"
         type="text"
-        htmlForId="productName"
         value={values.name}
         placeholder="상품명을 입력해주세요"
         onChange={handleChange}
@@ -118,7 +119,6 @@ const AddProduct = () => {
       <InputField
         name="price"
         id="price"
-        htmlForId="price"
         type="text"
         value={values.price}
         placeholder="판매 가격을 입력해주세요"
