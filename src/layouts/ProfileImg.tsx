@@ -1,4 +1,3 @@
-import React from "react";
 import StyledProfileImg from "./ProfileImg.style";
 import img from "../assets/profileImg.svg";
 

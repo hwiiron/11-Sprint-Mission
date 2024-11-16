@@ -1,12 +1,25 @@
-import React from "react";
 import Profile from "./Profile";
+
+type CommentProps = {
+  comment: {
+    id: number;
+    content: string;
+    writer: {
+      nickname: string;
+    };
+    updatedAt: string;
+  };
+  toggledCommentId: number | null;
+  handleToggleClick: (id: number) => void;
+  handleEditClick: (id: number) => void;
+};
 
 const Comment = ({
   comment,
   toggledCommentId,
   handleToggleClick,
   handleEditClick,
-}) => {
+}: CommentProps) => {
   return (
     <li key={comment.id}>
       <div className="comment">

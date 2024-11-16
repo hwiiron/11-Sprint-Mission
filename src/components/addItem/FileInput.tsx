@@ -1,9 +1,16 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { StyledFileInput, StyledFileArea } from "./FileInput.style";
 
-const FileInput = ({ name, value, onChange }) => {
+type FileInputProps = {
+  name: string;
+  value: File | null;
+  onChange: (name: string, nextValue: File | null) => void;
+  // onChange?: ChangeEventHandler<HTMLInputElement>;
+};
+
+const FileInput = ({ name, value, onChange }: FileInputProps) => {
   const [preview, setPreview] = useState<string>();
   const [imageUploadStatus, setImageUploadStatus] = useState(false);
 

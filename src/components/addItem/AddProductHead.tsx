@@ -1,7 +1,10 @@
-import React from "react";
 import StyledAddProductHead from "./AddProductHead.style";
 
-const AddProductHead = ({ disabled }) => {
+type AddProductHeadProps = {
+  disabled: boolean;
+};
+
+const AddProductHead = ({ disabled }: AddProductHeadProps) => {
   return (
     <StyledAddProductHead>
       <h2>상품 등록하기</h2>

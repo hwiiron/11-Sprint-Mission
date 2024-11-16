@@ -1,7 +1,13 @@
-import React from "react";
 import Info from "./ProductInfo.style";
 
-const ProductInfo = ({ product }) => {
+type ProductInfoProps = {
+  product: {
+    name: string;
+    price: number;
+  };
+};
+
+const ProductInfo = ({ product }: ProductInfoProps) => {
   return (
     <Info>
       <dt>{product.name}</dt>

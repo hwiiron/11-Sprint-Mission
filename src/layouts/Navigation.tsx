@@ -1,8 +1,11 @@
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import StyledNavigation from "./Navigation.style";
 
-function getLinkStyle({ isActive }) {
+type IsActievProps = {
+  isActive: boolean;
+};
+
+function getLinkStyle({ isActive }: IsActievProps) {
   return {
     color: isActive ? "#3692ff" : undefined,
   };

@@ -1,4 +1,3 @@
-import React from "react";
 import StyledInner from "../layouts/StyledInner.style";
 
 import Header from "../layouts/Header";

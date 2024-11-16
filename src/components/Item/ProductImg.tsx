@@ -1,9 +1,14 @@
-import React from "react";
 import Img from "./ProductImg.style";
 import defaultImg from "../../assets/codeit.svg";
 
-const ProductImg = ({ item }) => {
-  const handleImgError = (e) => {
+type ProductImgProps = {
+  item: {
+    images: string[];
+  };
+};
+
+const ProductImg = ({ item }: ProductImgProps) => {
+  const handleImgError = (e: any) => {
     e.target.src = defaultImg;
   };
 

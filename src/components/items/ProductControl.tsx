@@ -4,20 +4,30 @@ import SearchInput from "./SearchInput";
 import Button from "../../layouts/Button";
 import CustomSelect from "./CustomSelect";
 
+type ProductControlProps = {
+  value: string;
+  searchInputChange: (value: string) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  orderBy: string;
+  recentClick: () => void;
+  favoriteClick: () => void;
+  setCurrentPage: (page: number) => void;
+};
+
 const ProductControl = ({
   value,
-  SearchInputChange,
+  searchInputChange,
   onSubmit,
   orderBy,
   recentClick,
   favoriteClick,
   setCurrentPage,
-}) => {
+}: ProductControlProps) => {
   return (
     <StyledControl>
       <SearchInput
         value={value}
-        SearchInputChange={SearchInputChange}
+        searchInputChange={searchInputChange}
         onSubmit={onSubmit}
       />
 

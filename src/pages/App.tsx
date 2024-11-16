@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./Home";
@@ -10,7 +9,7 @@ import Items from "./Items";
 import Item from "./Item";
 import AddItem from "./AddItem";
 
-import NotFound from "./NotFound";
+import NotFound from "./Notfound.tsx";
 
 const App = () => {
   return (

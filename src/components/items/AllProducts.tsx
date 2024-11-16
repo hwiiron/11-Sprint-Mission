@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../utils/api";
+import { useEffect, useState } from "react";
+import { getAllProducts } from "../../utils/api.ts";
 import { StyledProducts, StyledTitle } from "./BestProducts.style";
 import { StyledHead, StyledSection } from "./AllProducts.style";
 
@@ -88,11 +88,11 @@ const AllProducts = () => {
   };
 
   // 검색
-  const SearchInputChange = (value: string) => {
+  const searchInputChange = (value: string) => {
     setSearch(value);
   };
 
-  const handleSearchSubmit = (e: SubmitEvent) => {
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const filteredData = products.filter((product) =>
@@ -113,7 +113,7 @@ const AllProducts = () => {
         <StyledTitle>전체 상품</StyledTitle>
         <ProductControl
           value={search}
-          SearchInputChange={SearchInputChange}
+          searchInputChange={searchInputChange}
           onSubmit={handleSearchSubmit}
           orderBy={orderBy}
           recentClick={recentClick}

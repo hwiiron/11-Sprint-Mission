@@ -1,7 +1,12 @@
-import React from "react";
 import Description from "./ProductDescription.style";
 
-const ProductDescription = ({ item }) => {
+type ProductDescription = {
+  item: {
+    description: string;
+  };
+};
+
+const ProductDescription = ({ item }: ProductDescription) => {
   return (
     <Description>
       <h3>상품 소개</h3>

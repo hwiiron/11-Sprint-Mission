@@ -1,8 +1,13 @@
-import React from "react";
 import LikeIcon from "../../assets/item/likes_icon.svg";
 import Like from "./Likes.style";
 
-const Likes = ({ item }) => {
+type LikesProps = {
+  item: {
+    favoriteCount: number;
+  };
+};
+
+const Likes = ({ item }: LikesProps) => {
   return (
     <Like>
       <i>

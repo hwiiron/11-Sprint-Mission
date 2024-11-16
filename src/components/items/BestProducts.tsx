@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getBestProducts } from "../../utils/api";
+import { useEffect, useState } from "react";
+import { getBestProducts } from "../../utils/api.ts";
 import { StyledProducts, StyledTitle } from "./BestProducts.style";
 
 import SkeletonProducts from "./SkeletonProducts";

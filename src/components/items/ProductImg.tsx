@@ -1,10 +1,17 @@
-import React from "react";
 import StyledImg from "./ProductImg.style";
 import defaultImg from "../../assets/codeit.svg";
 
-const ProductImg = ({ product, type }) => {
-  const handleImgError = (e) => {
-    e.target.src = defaultImg;
+type ProductImgProps = {
+  product: {
+    name: string;
+    images: string;
+  };
+  type: string;
+};
+
+const ProductImg = ({ product, type }: ProductImgProps) => {
+  const handleImgError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = defaultImg;
   };
 
   return (

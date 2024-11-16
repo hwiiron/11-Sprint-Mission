@@ -1,8 +1,7 @@
-import React from "react";
 import Header from "../layouts/Header";
 import StyledInner from "../layouts/StyledInner.style";
 import AddProduct from "../components/addItem/AddProduct";
-import Footer from "../layouts/Footer";
+import Footer from "../layouts/Footer.tsx";
 
 const AddItem = () => {
   return (

@@ -1,13 +1,28 @@
-import React from "react";
 import { Inner, ProductContainer } from "./Product.style";
 
 import { useState, useEffect } from "react";
-import { getProduct } from "../../utils/api";
+import { getProduct } from "../../utils/api.ts";
 import ProductImg from "./ProductImg";
 import ProductDetails from "./ProductDetails";
 
-const Product = ({ id }) => {
-  const [item, setItem] = useState();
+type IdProps = {
+  id: string | undefined;
+};
+
+type ItemProps = {
+  description: string;
+  favoriteCount: number;
+  id: number;
+  name: string;
+  ownerNickname: string;
+  price: number;
+  tags: string[];
+  updatedAt: string;
+  images: string[];
+};
+
+const Product = ({ id }: IdProps) => {
+  const [item, setItem] = useState<ItemProps>();
 
   useEffect(() => {
     const productDataLoad = async () => {

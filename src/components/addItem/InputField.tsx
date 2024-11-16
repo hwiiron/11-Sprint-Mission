@@ -1,7 +1,7 @@
 import React from "react";
 import StyledInputField from "./InputField.style";
 
-type Props = {
+type InputFieldProps = {
   name: string;
   id: string;
   type: string;
@@ -12,7 +12,7 @@ type Props = {
   onInput?: React.FormEventHandler<HTMLInputElement>;
 };
 
-const InputField: React.FC<Props> = ({
+const InputField: React.FC<InputFieldProps> = ({
   name,
   id,
   type,

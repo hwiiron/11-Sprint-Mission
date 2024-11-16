@@ -1,11 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Inner, Label, Textarea, Button } from "./ContactUs.style";
 
 const ContactUs = () => {
   const [textarea, setTextarea] = useState("");
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextarea(e.target.value);
   };
 

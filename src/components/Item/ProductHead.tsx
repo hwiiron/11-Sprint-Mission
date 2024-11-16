@@ -1,7 +1,13 @@
-import React from "react";
 import Head from "./ProductHead.style";
 
-const ProductHead = ({ item }) => {
+type ProductHeadProps = {
+  item: {
+    name: string;
+    price: number;
+  };
+};
+
+const ProductHead = ({ item }: ProductHeadProps) => {
   return (
     <Head>
       <h2>{item.name}</h2>

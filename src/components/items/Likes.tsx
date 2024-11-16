@@ -1,7 +1,12 @@
-import React from "react";
 import StyledLikes from "./Likes.style";
 
-const Likes = ({ product }) => {
+type LikesProps = {
+  product: {
+    favoriteCount: number;
+  };
+};
+
+const Likes = ({ product }: LikesProps) => {
   return <StyledLikes>{product.favoriteCount}</StyledLikes>;
 };
 

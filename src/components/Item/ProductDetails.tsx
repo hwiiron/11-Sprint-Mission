@@ -1,4 +1,3 @@
-import React from "react";
 import { Details, UserStats } from "./ProductDetails.style";
 
 import ProductHead from "./ProductHead";
@@ -7,7 +6,20 @@ import ProductTag from "./ProductTag";
 import Profile from "./Profile";
 import Likes from "./Likes";
 
-const ProductDetails = ({ item }) => {
+type ProductDetailsProps = {
+  item: {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    tags: string[];
+    ownerNickname: string;
+    updatedAt: string;
+    favoriteCount: number;
+  };
+};
+
+const ProductDetails = ({ item }: ProductDetailsProps) => {
   return (
     <Details>
       <ProductHead item={item} />

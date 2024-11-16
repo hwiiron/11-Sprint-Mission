@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledHeader, StyledHeaderInner } from "./Header.style";
 import Logo from "./Logo";
 import Navigation from "./Navigation";

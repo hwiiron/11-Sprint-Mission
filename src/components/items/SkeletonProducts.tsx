@@ -1,8 +1,6 @@
-import React from "react";
-
 import StyledSkeletonProducts from "./SkeletonProducts.style";
 
-const typeList = {
+const typeList: any = {
   BEST: {
     number: 4,
   },

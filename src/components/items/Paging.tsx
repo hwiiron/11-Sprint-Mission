@@ -1,7 +1,12 @@
-import React from "react";
 import StyledPaging from "./Paging.style";
 
-const Paging = ({ handlePageChange, totalCount, currentPage }) => {
+type PagingProps = {
+  handlePageChange: (page: number) => void;
+  totalCount: number;
+  currentPage: number;
+};
+
+const Paging = ({ handlePageChange, totalCount, currentPage }: PagingProps) => {
   const pageLimit = 5; // 보여줄 페이지 버튼 수
   const totalPages = Math.ceil(totalCount / 10); // 전체 페이지 수 계산
 

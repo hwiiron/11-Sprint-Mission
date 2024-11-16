@@ -1,7 +1,6 @@
-import React, { ChangeEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Inner, CommentList } from "./Comments.style";
-import { getComment } from "../../utils/api";
+import { getComment } from "../../utils/api.ts";
 import EditComment from "./EditComment";
 import Comment from "./Comment";
 import StyledReturnToList from "./ReturnToList.style";
@@ -10,21 +9,25 @@ import StyledNoInquiries from "./NoInquiries.style";
 type CommentProps = {
   id: number;
   content: string;
-  writer: string;
+  writer: {
+    nickname: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
 
-const Comments = ({ id }) => {
-  const [commentList, setCommentList] = useState<CommentProps[] | null>(null);
-  const [toggledCommentId, setToggledCommentId] = useState(null);
-  const [editingCommentId, setEditingCommentId] = useState(null);
+type IdProps = {
+  id: string | undefined;
+};
 
-  const [EditTextarea, setEditTextarea] = useState();
+const Comments = ({ id }: IdProps) => {
+  const [commentList, setCommentList] = useState<CommentProps[] | null>(null);
+  const [toggledCommentId, setToggledCommentId] = useState<number | null>(null);
+  const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+
+  const [EditTextarea, setEditTextarea] = useState<string>("");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  console.log(commentList);
 
   useEffect(() => {
     if (editingCommentId && textareaRef.current) {
@@ -48,11 +51,11 @@ const Comments = ({ id }) => {
 
   if (!commentList) return;
 
-  const handleToggleClick = (commentId) => {
+  const handleToggleClick = (commentId: number) => {
     setToggledCommentId(toggledCommentId === commentId ? null : commentId);
   };
 
-  const handleEditClick = (commentId) => {
+  const handleEditClick = (commentId: number) => {
     setEditingCommentId(commentId);
   };
 
@@ -61,7 +64,7 @@ const Comments = ({ id }) => {
     setToggledCommentId(null);
   };
 
-  const onTextareaChange = (e) => {
+  const onTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setEditTextarea(e.target.value);
   };
 

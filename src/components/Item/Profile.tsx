@@ -1,9 +1,13 @@
-import React from "react";
 import profileImg from "../../assets/profileImg.svg";
 
 import { ProfileWrapper, Img, Info } from "./Profile.style";
 
-const Profile = ({ nickname, updatedAt }) => {
+type ProfileProps = {
+  nickname: string;
+  updatedAt: string;
+};
+
+const Profile = ({ nickname, updatedAt }: ProfileProps) => {
   const formattedDate = new Date(updatedAt).toLocaleDateString();
 
   return (

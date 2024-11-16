@@ -1,7 +1,21 @@
-import React from "react";
+import { ChangeEvent } from "react";
 import StyledTextarea from "./Textarea.style";
 
-const Textarea = ({ name, id, value, placeholder, onChange }) => {
+type TextareaProps = {
+  name: string;
+  id: string;
+  value: string;
+  placeholder: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+};
+
+const Textarea = ({
+  name,
+  id,
+  value,
+  placeholder,
+  onChange,
+}: TextareaProps) => {
   return (
     <StyledTextarea
       name={name}

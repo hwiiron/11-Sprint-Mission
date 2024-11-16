@@ -1,5 +1,20 @@
-import React from "react";
+import { ChangeEvent, RefObject } from "react";
 import Profile from "./Profile";
+
+type EditCommentProps = {
+  comment: {
+    id: number;
+    content: string;
+    writer: {
+      nickname: string;
+    };
+    updatedAt: string;
+  };
+  EditTextarea: string | undefined;
+  onTextareaChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  textareaRef: RefObject<HTMLTextAreaElement>;
+  handleCancelClick: () => void;
+};
 
 const EditComment = ({
   comment,
@@ -7,7 +22,7 @@ const EditComment = ({
   onTextareaChange,
   textareaRef,
   handleCancelClick,
-}) => {
+}: EditCommentProps) => {
   return (
     <li key={comment.id} className="edit">
       <div className="comment">

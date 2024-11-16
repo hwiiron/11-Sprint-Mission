@@ -1,7 +1,12 @@
-import React from "react";
 import StyledTagList from "./TagList.style";
 
-const TagList = ({ tagsLength, tags, onClick }) => {
+type TagListProps = {
+  tagsLength: number;
+  tags: string[];
+  onClick: (idx: number) => void;
+};
+
+const TagList = ({ tagsLength, tags, onClick }: TagListProps) => {
   return (
     <>
       {tagsLength !== 0 && (

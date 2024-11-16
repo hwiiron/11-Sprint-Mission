@@ -33,12 +33,14 @@ const AddProduct = () => {
     values.price.trim() !== "" &&
     values.tags.length > 0;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     handleFileChange(name, value);
   };
 
-  const handleFileChange = (name: string, value: string) => {
+  const handleFileChange = (name: string, value: File | string | null) => {
     setValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -46,7 +48,9 @@ const AddProduct = () => {
   };
 
   // 상품 가격 3자리마다 콤마 추가, 모바일에서 text 입력되는 경우도 해결
-  const onInput = (e: React.FormEvent<HTMLInputElement>) => {
+  const onInput = (
+    e: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     const target = e.target as HTMLInputElement;
     const onlyDigits = target.value.replace(/[^0-9]/g, "");
     const formattedValue = onlyDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

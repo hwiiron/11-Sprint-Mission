@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import StyledSelect from "./CustomSelect.style";
+
+type CustomProps = {
+  orderBy: string;
+  recentClick: () => void;
+  favoriteClick: () => void;
+  setCurrentPage: (page: number) => void;
+};
 
 const CustomSelect = ({
   orderBy,
   recentClick,
   favoriteClick,
   setCurrentPage,
-}) => {
+}: CustomProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const optionToggle = () => {

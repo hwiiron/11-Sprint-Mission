@@ -1,10 +1,15 @@
-import React from "react";
 import { ChangeEvent } from "react";
 import StyledInput from "./SearchInput.style";
 
-const SearchInput = ({ value, SearchInputChange, onSubmit }) => {
+type SearchInput = {
+  value: string;
+  searchInputChange: (value: string) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+};
+
+const SearchInput = ({ value, searchInputChange, onSubmit }: SearchInput) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    SearchInputChange(e.target.value);
+    searchInputChange(e.target.value);
   };
 
   return (
@@ -15,7 +20,6 @@ const SearchInput = ({ value, SearchInputChange, onSubmit }) => {
         value={value}
         placeholder="검색할 상품을 입력해주세요"
         onChange={onChange}
-        onSubmit={onSubmit}
       />
     </form>
   );

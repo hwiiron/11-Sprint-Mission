@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import Header from "../layouts/Header";
 import StyledInner from "../layouts/StyledInner.style";
