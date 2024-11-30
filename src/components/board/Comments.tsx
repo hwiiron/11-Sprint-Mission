@@ -3,7 +3,7 @@ import { Inner, CommentList } from "./Comments.style";
 import EditComment from "./EditComment";
 import Comment from "./Comment";
 import StyledReturnToList from "./ReturnToList.style";
-import StyledNoInquiries from "./NoInquiries.style";
+import NoInquiries from "./NoInquiries";
 
 type CommentProps = {
   id: number;
@@ -92,7 +92,7 @@ const Comments = ({ id }: IdProps) => {
           })}
         </CommentList>
       ) : (
-        <StyledNoInquiries />
+        <NoInquiries />
       )}
 
       <StyledReturnToList />

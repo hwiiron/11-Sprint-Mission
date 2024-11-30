@@ -1,34 +1,18 @@
 import styled from "styled-components";
-import NoInquiries from "./NoInquiries";
-// import NoInquiriesImg from "../../assets/item/NoInquiries.svg";
 
-const StyledNoInquiries = styled(NoInquiries)`
+const StyledNoInquiries = styled.div`
   color: #9ca3af;
   text-align: center;
-  padding-top: 204px;
+  padding-top: 16px;
   margin-bottom: 48px;
   position: relative;
 
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 196px;
-    height: 196px;
-    /* background: url(${NoInquiriesImg}); */
-    background-size: 100%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+  p {
+    margin-top: 16px;
   }
 
   @media (max-width: 1200px) {
     padding-top: 148px;
-
-    &::before {
-      width: 140px;
-      height: 140px;
-    }
   }
 `;
 
