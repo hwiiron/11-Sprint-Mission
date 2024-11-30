@@ -23,7 +23,7 @@ export default function AllArticle() {
 
   useEffect(() => {
     const articleLoad = async (orderBy: string) => {
-      let url = `https://panda-market-api.vercel.app/articles?orderBy=${orderBy}`;
+      let url = `${process.env.NEXT_PUBLIC_API_URL}/articles?orderBy=${orderBy}`;
 
       if (search) {
         url += `&keyword=${search}`;

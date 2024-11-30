@@ -36,8 +36,8 @@ const StyledArticleList = styled.div`
 `;
 
 const StyledArticle = styled.div`
-  border-bottom: 1px solid #e5e7eb;
-  background-color: #fcfcfc;
+  border-bottom: 1px solid var(--gray200);
+  background-color: var(--gray);
   width: 100%;
   height: 138px;
   padding: 0 0 24px;

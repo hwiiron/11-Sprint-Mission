@@ -12,7 +12,7 @@ const Header = () => {
       <StyledHeaderInner>
         <Logo />
 
-        {router.pathname !== "/" ? <Navigation /> : ""}
+        {router.pathname !== "/" && <Navigation />}
 
         <Button type={"LOGIN"} text={"로그인"} to={"/login"} />
       </StyledHeaderInner>
