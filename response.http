@@ -1,0 +1,19 @@
+### 게시글 생성
+POST https://panda-market-api.vercel.app/articles
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgxLCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMjg4NDUyMiwiZXhwIjoxNzMyODg2MzIyLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.LdtBeCUQhmHg2lmjX3l5zd8nBWh6EMtfMqv3dSVD5y4
+
+{
+  "image": "null",
+  "content": "게시글 등록 테스트",
+  "title": "게시글 등록 테스트"
+}
+
+### 게시글 댓글 생성
+POST https://panda-market-api.vercel.app/articles/308/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgxLCJzY29wZSI6ImFjY2VzcyIsImlhdCI6MTczMjg4NDUyMiwiZXhwIjoxNzMyODg2MzIyLCJpc3MiOiJzcC1wYW5kYS1tYXJrZXQifQ.LdtBeCUQhmHg2lmjX3l5zd8nBWh6EMtfMqv3dSVD5y4
+
+{
+  "content": "댓글 테스트"
+}

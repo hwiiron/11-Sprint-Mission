@@ -1,8 +1,8 @@
 import React from "react";
-import StyledControl from "./ProductControl.style";
-import SearchInput from "./SearchInput";
-import Button from "../../layouts/Button";
-import CustomSelect from "./CustomSelect";
+import StyledControl from "@/src/components/boards/ProductControl.style";
+import SearchInput from "@/src/components/boards/SearchInput";
+import CustomSelect from "@/src/components/boards/CustomSelect";
+import Button from "@/src/layouts/Button";
 
 type ProductControlProps = {
   value: string;
@@ -29,7 +29,7 @@ const ProductControl = ({
         onSubmit={onSubmit}
       />
 
-      <Button text={"상품 등록하기"} to={"/additem"} />
+      <Button text={"상품 등록하기"} to={"/addboard"} />
 
       <CustomSelect
         orderBy={orderBy}

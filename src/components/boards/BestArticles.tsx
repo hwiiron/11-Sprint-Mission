@@ -20,7 +20,7 @@ export default function BestArticles() {
   useEffect(() => {
     const articleLoad = async (pageSize: number) => {
       const res = await fetch(
-        `https://panda-market-api.vercel.app/articles?page=1&pageSize=${pageSize}&orderBy=like`
+        `${process.env.NEXT_PUBLIC_API_URL}/articles?page=1&pageSize=${pageSize}&orderBy=like`
       );
       const data = await res.json();
       setArticles(data.list);
