@@ -17,3 +17,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgxLCJzY29wZ
 {
   "content": "댓글 테스트"
 }
+
+
+### 로그인
+POST https://panda-market-api.vercel.app/auth/signIn
+Content-Type: application/json
+
+{
+  "email": "shinhwiiron@gmail.com",
+  "password": "shc0918*"
+}

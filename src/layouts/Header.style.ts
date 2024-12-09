@@ -14,7 +14,8 @@ const StyledHeaderInner = styled.div`
   margin: 0 auto;
 
   button,
-  a {
+  a,
+  > div {
     margin-left: auto;
   }
 

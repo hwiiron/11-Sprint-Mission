@@ -1,0 +1,187 @@
+/* 로그인, 회원가입 */
+.wrapper.login {
+  padding: 231px 0;
+}
+
+.login .inner {
+  width: 640px;
+}
+
+.login .logo {
+  display: block;
+  width: 396px;
+  height: 132px;
+  margin: 0 auto;
+}
+
+.login .loginWrap {
+  margin-top: 40px;
+}
+
+.login .loginWrap .input {
+  display: flex;
+  flex-direction: column;
+}
+
+.login .loginWrap .input + .input {
+  margin-top: 24px;
+}
+
+.login .loginWrap .input label {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gray800);
+  margin-bottom: 16px;
+}
+
+.login .loginWrap .loginBtn,
+.login .loginWrap .signupBtn {
+  border-radius: 40px;
+  background: var(--blue);
+  width: 100%;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 24px;
+  transition: 0.3s;
+}
+
+.login .loginWrap .loginBtn:disabled,
+.login .loginWrap .signupBtn:disabled {
+  cursor: auto;
+  background: var(--gray400);
+}
+
+.login .easyLogin {
+  border-radius: 8px;
+  background: #e6f2ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 23px;
+  margin-top: 24px;
+}
+
+.login .easyLogin p {
+  font-weight: 500;
+  color: var(--gray800);
+}
+
+.login .easyLogin ul {
+  display: flex;
+  gap: 16px;
+}
+
+.login .easyLogin ul li a {
+  display: block;
+  width: 42px;
+  height: 42px;
+  position: relative;
+}
+
+.login .signup {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray800);
+  text-align: center;
+  margin-top: 24px;
+}
+
+.login .signup a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+input {
+  border: 0;
+  border-radius: 12px;
+  background: var(--gray100);
+  height: 56px;
+  color: var(--gray800);
+  padding: 0 24px;
+}
+
+input::placeholder {
+  color: var(--gray400);
+}
+
+input:focus {
+  outline-color: var(--blue);
+}
+
+input.error {
+  border: 1px solid #f74747;
+}
+
+.errorMessage {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f74747;
+  margin: 8px 0 0 16px;
+}
+
+.password {
+  position: relative;
+}
+
+.password input {
+  width: 100%;
+  padding-right: 56px;
+}
+
+.password .passwordToggleBtn,
+.password .passwordCheckToggleBtn {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1200px) {
+  .wrapper.login {
+    padding: 190px 0;
+  }
+
+  .login .inner {
+    width: 86%;
+  }
+}
+
+@media (max-width: 744px) {
+  .wrapper.login {
+    padding: 80px 0;
+  }
+
+  .login .inner {
+    width: 91.5%;
+    max-width: 400px;
+  }
+
+  .login .logo {
+    width: 198px;
+    height: 66px;
+  }
+
+  .login .loginWrap {
+    margin-top: 24px;
+  }
+
+  .login .loginWrap .input label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .login .loginWrap .input + .input {
+    margin-top: 16px;
+  }
+
+  .login .loginWrap .loginBtn,
+  .login .loginWrap .signupBtn {
+    margin-top: 16px;
+  }
+}
