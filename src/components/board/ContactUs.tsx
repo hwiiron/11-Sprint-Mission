@@ -1,25 +1,30 @@
-import { ChangeEvent, useState } from "react";
 import { Inner, Label, Textarea, Button } from "./ContactUs.style";
 
-const ContactUs = () => {
-  const [textarea, setTextarea] = useState("");
+type ContactUsProps = {
+  textareaValue: string;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+};
 
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextarea(e.target.value);
-  };
-
+const ContactUs = ({
+  textareaValue,
+  handleSubmit,
+  onChange,
+}: ContactUsProps) => {
   return (
     <Inner>
       <Label htmlFor="contactUs">댓글달기</Label>
 
-      <Textarea
-        id="contactUs"
-        placeholder="댓글을 입력해주세요."
-        value={textarea}
-        onChange={onChange}
-      ></Textarea>
+      <form onSubmit={handleSubmit}>
+        <Textarea
+          id="contactUs"
+          placeholder="댓글을 입력해주세요."
+          value={textareaValue}
+          onChange={onChange}
+        ></Textarea>
 
-      <Button disabled={textarea === ""}>등록</Button>
+        <Button disabled={textareaValue === ""}>등록</Button>
+      </form>
     </Inner>
   );
 };

@@ -6,6 +6,8 @@ import Label from "./Label";
 import FileInput from "./FileInput";
 import InputField from "./InputField";
 import Textarea from "./Textarea";
+import { postArticle } from "@/api/api";
+import { useRouter } from "next/router";
 
 type ValuesProps = {
   imgFile: null;
@@ -19,6 +21,8 @@ const AddArticle = () => {
     name: "",
     description: "",
   });
+
+  const router = useRouter();
 
   const isSubmitDisabled =
     values.name.trim() !== "" && values.description.trim() !== "";
@@ -37,35 +41,45 @@ const AddArticle = () => {
     }));
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const result = await postArticle(values);
+    if (result) {
+      router.push("/boards");
+    }
+  };
+
   return (
     <StyledAddProduct>
-      <AddProductHead disabled={!isSubmitDisabled} />
+      <form onSubmit={handleSubmit}>
+        <AddProductHead disabled={!isSubmitDisabled} />
 
-      <Label htmlFor="name">*제목</Label>
-      <InputField
-        name="name"
-        id="name"
-        type="text"
-        value={values.name}
-        placeholder="제목을 입력해주세요"
-        onChange={handleChange}
-      />
+        <Label htmlFor="name">*제목</Label>
+        <InputField
+          name="name"
+          id="name"
+          type="text"
+          value={values.name}
+          placeholder="제목을 입력해주세요"
+          onChange={handleChange}
+        />
 
-      <Label htmlFor="description">*내용</Label>
-      <Textarea
-        name="description"
-        id="description"
-        value={values.description}
-        placeholder="내용을 입력해주세요"
-        onChange={handleChange}
-      />
+        <Label htmlFor="description">*내용</Label>
+        <Textarea
+          name="description"
+          id="description"
+          value={values.description}
+          placeholder="내용을 입력해주세요"
+          onChange={handleChange}
+        />
 
-      <Label htmlFor="productImg">이미지</Label>
-      <FileInput
-        name="imgFile"
-        value={values.imgFile}
-        onChange={handleFileChange}
-      />
+        <Label htmlFor="productImg">이미지</Label>
+        <FileInput
+          name="imgFile"
+          value={values.imgFile}
+          onChange={handleFileChange}
+        />
+      </form>
     </StyledAddProduct>
   );
 };

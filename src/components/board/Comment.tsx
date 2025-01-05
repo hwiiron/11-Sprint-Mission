@@ -14,6 +14,7 @@ type CommentProps = {
   toggledCommentId: number | null;
   handleToggleClick: (id: number) => void;
   handleEditClick: (id: number) => void;
+  handleDeleteClick: (id: number) => void;
 };
 
 const Comment = ({
@@ -21,6 +22,7 @@ const Comment = ({
   toggledCommentId,
   handleToggleClick,
   handleEditClick,
+  handleDeleteClick,
 }: CommentProps) => {
   return (
     <li key={comment.id}>
@@ -44,7 +46,9 @@ const Comment = ({
             </li>
 
             <li>
-              <button>삭제하기</button>
+              <button onClick={() => handleDeleteClick(comment.id)}>
+                삭제하기
+              </button>
             </li>
           </ul>
         </>

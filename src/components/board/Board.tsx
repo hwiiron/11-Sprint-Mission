@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import heartIcon from "@/src/assets/boards/heart_icon.svg";
 import ProfileImg from "@/src/layouts/ProfileImg";
+import { getArticle } from "@/api/api";
 
 type IdProps = {
   id: number | undefined;
@@ -32,17 +33,15 @@ type ArticleDataProps = {
 const Board = ({ id }: IdProps) => {
   const [articleData, setArticleData] = useState<ArticleDataProps>();
 
-  const articleLoad = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}`
-    );
-    const data = await res.json();
-    setArticleData(data);
-  };
-
   useEffect(() => {
+    const articleLoad = async () => {
+      if (id) {
+        const data = await getArticle(id);
+        setArticleData(data);
+      }
+    };
     articleLoad();
-  }, []);
+  }, [id]);
 
   if (!articleData) return;
 

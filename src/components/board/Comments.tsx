@@ -4,6 +4,7 @@ import EditComment from "./EditComment";
 import Comment from "./Comment";
 import StyledReturnToList from "./ReturnToList.style";
 import NoInquiries from "./NoInquiries";
+import { patchComment } from "@/api/api";
 
 type CommentProps = {
   id: number;
@@ -16,12 +17,12 @@ type CommentProps = {
   updatedAt: string;
 };
 
-type IdProps = {
-  id: number | undefined;
+type CommentsProps = {
+  commentList: CommentProps[];
+  handleDeleteClick: (id: number) => void;
 };
 
-const Comments = ({ id }: IdProps) => {
-  const [commentList, setCommentList] = useState<CommentProps[] | null>(null);
+const Comments = ({ commentList, handleDeleteClick }: CommentsProps) => {
   const [toggledCommentId, setToggledCommentId] = useState<number | null>(null);
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
 
@@ -38,20 +39,6 @@ const Comments = ({ id }: IdProps) => {
     }
   }, [editingCommentId]);
 
-  useEffect(() => {
-    const commentLoad = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}/comments?limit=10`
-      );
-      const data = await res.json();
-      setCommentList(data.list || []);
-    };
-
-    commentLoad();
-  }, [id]);
-
-  if (!commentList) return;
-
   const handleToggleClick = (commentId: number) => {
     setToggledCommentId(toggledCommentId === commentId ? null : commentId);
   };
@@ -65,6 +52,12 @@ const Comments = ({ id }: IdProps) => {
     setToggledCommentId(null);
   };
 
+  const handleEditSubmit = (id: number, content: string) => {
+    patchComment(id, content);
+    setEditingCommentId(null);
+    setToggledCommentId(null);
+  };
+
   return (
     <Inner>
       {commentList.length !== 0 ? (
@@ -73,10 +66,12 @@ const Comments = ({ id }: IdProps) => {
             if (comment.id === editingCommentId) {
               return (
                 <EditComment
+                  id={comment.id}
                   key={comment.id}
                   comment={comment}
                   textareaRef={textareaRef}
                   handleCancelClick={handleCancelClick}
+                  handleEditSubmit={handleEditSubmit}
                 />
               );
             }
@@ -87,6 +82,7 @@ const Comments = ({ id }: IdProps) => {
                 toggledCommentId={toggledCommentId}
                 handleToggleClick={handleToggleClick}
                 handleEditClick={handleEditClick}
+                handleDeleteClick={handleDeleteClick}
               />
             );
           })}

@@ -29,7 +29,7 @@ const ProductControl = ({
         onSubmit={onSubmit}
       />
 
-      <Button text={"상품 등록하기"} to={"/addboard"} />
+      <Button text={"글쓰기"} to={"/addboard"} />
 
       <CustomSelect
         orderBy={orderBy}
