@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const StyledHead = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const StyledTitle = styled.h2`
   font-size: 20px;
   font-weight: 700;
@@ -82,6 +88,7 @@ const StyledContent = styled.div`
 `;
 
 export {
+  StyledHead,
   StyledTitle,
   StyledArticleInfo,
   StyledProfile,

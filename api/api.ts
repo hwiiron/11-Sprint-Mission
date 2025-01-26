@@ -14,15 +14,37 @@ export const getArticle = async (id: number) => {
 };
 
 // 게시글 댓글
-export const getComments = async (id: number) => {
+// export const getComments = async (id: number) => {
+//   try {
+//     const response = await instance.get(
+//       `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}/comments?limit=10`
+//     );
+//     const data = await response.data;
+//     return data;
+//   } catch (error) {
+//     console.error("게시글 댓글 조회 실패", error);
+//   }
+// };
+export const getComments = async (
+  id: any,
+  cursor?: any,
+  limit: number = 10
+) => {
   try {
-    const response = await instance.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}/comments?limit=10`
-    );
-    const data = await response.data;
-    return data;
+    // 기본 URL 설정
+    let url = `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}/comments?limit=${limit}`;
+
+    // cursor가 존재하면 URL에 추가
+    if (cursor) {
+      url += `&cursor=${cursor}`;
+    }
+
+    const response = await instance.get(url);
+    const data = response.data; // `response.data`를 바로 반환
+    return data; // data.list와 data.nextCursor가 포함된다고 가정
   } catch (error) {
     console.error("게시글 댓글 조회 실패", error);
+    throw error; // 에러를 상위로 전달
   }
 };
 
@@ -91,5 +113,18 @@ export const postArticle = async (values: any) => {
     return response.data;
   } catch (error) {
     console.error("게시글 등록 실패", error);
+  }
+};
+
+// 게시글 삭제
+export const deleteArticle = async (id: number) => {
+  try {
+    const response = await instance.delete(
+      `${process.env.NEXT_PUBLIC_API_URL}/articles/${id}`
+    );
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("게시글 삭제 실패", error);
   }
 };

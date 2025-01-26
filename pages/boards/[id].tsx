@@ -21,21 +21,59 @@ export default function Article() {
   const [commentList, setCommentList] = useState<CommentProps[]>([]);
   const [textareaValue, setTextareaValue] = useState("");
 
+  const [cursor, setCursor] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
   const router = useRouter();
   const { id } = router.query;
 
   const parsedId = typeof id === "string" ? parseInt(id, 10) : undefined;
 
-  useEffect(() => {
-    const commentLoad = async () => {
-      if (parsedId) {
-        const data = await getComments(parsedId);
-        setCommentList(data.list);
-      }
-    };
+  // useEffect(() => {
+  //   const commentLoad = async () => {
+  //     if (parsedId) {
+  //       const data = await getComments(parsedId);
+  //       setCommentList(data.list);
+  //     }
+  //   };
 
-    commentLoad();
-  }, [id]);
+  //   commentLoad();
+  // }, [id]);
+
+  const loadComments = async () => {
+    if (isLoading || !hasMore) return;
+
+    setIsLoading(true);
+    try {
+      const data = await getComments(parsedId, cursor, 10); // cursor를 전달
+      setCommentList((prev) => [...prev, ...data.list]);
+      setCursor(data.nextCursor || null); // 다음 커서 설정
+      setHasMore(!!data.nextCursor); // 다음 커서가 없으면 더 로드할 데이터 없음
+    } catch (error) {
+      console.error("댓글 로드 실패", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          loadComments();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    const target = document.getElementById("observer");
+    if (target) observer.observe(target);
+
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, [parsedId, hasMore, isLoading, cursor]);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextareaValue(e.target.value);
@@ -75,6 +113,7 @@ export default function Article() {
         commentList={commentList}
         handleDeleteClick={handleDeleteClick}
       />
+      <div id="observer"></div> {/* Intersection Observer가 감지할 요소 */}
     </StyledInner>
   );
 }

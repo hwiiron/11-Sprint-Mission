@@ -4,12 +4,15 @@ import {
   StyledContent,
   StyledLike,
   StyledProfile,
+  StyledHead,
   StyledTitle,
 } from "./Board.style";
 import Image from "next/image";
 import heartIcon from "@/src/assets/boards/heart_icon.svg";
 import ProfileImg from "@/src/layouts/ProfileImg";
-import { getArticle } from "@/api/api";
+import { deleteArticle, getArticle } from "@/api/api";
+import Dropdown from "./Dropdown";
+import { useRouter } from "next/router";
 
 type IdProps = {
   id: number | undefined;
@@ -32,6 +35,7 @@ type ArticleDataProps = {
 
 const Board = ({ id }: IdProps) => {
   const [articleData, setArticleData] = useState<ArticleDataProps>();
+  const router = useRouter();
 
   useEffect(() => {
     const articleLoad = async () => {
@@ -43,11 +47,19 @@ const Board = ({ id }: IdProps) => {
     articleLoad();
   }, [id]);
 
+  const handleDeleteClick = () => {
+    deleteArticle(Number(router.query.id));
+    router.push("/boards");
+  };
+
   if (!articleData) return;
 
   return (
     <>
-      <StyledTitle>{articleData.title}</StyledTitle>
+      <StyledHead>
+        <StyledTitle>{articleData.title}</StyledTitle>
+        <Dropdown handleDeleteClick={handleDeleteClick} />
+      </StyledHead>
 
       <StyledArticleInfo>
         <StyledProfile>
